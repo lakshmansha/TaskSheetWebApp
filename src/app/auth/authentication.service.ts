@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 import { Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
@@ -17,7 +19,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(private http: HttpClient, private credentialsService: CredentialsService) {}
 
   /**
    * Authenticates the user.
@@ -32,6 +34,17 @@ export class AuthenticationService {
     };
     this.credentialsService.setCredentials(data, context.remember);
     return of(data);
+
+    // const url = environment.serverUrl + '/auth/login';
+
+    // const payload = {
+    //   email: context.username,
+    //   password: context.password
+    // }
+
+    // const header =
+
+    // this.http.post(url, payload, )
   }
 
   /**
