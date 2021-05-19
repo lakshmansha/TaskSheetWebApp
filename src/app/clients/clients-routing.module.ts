@@ -4,9 +4,17 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { Shell } from '@app/shell/shell.service';
 import { ClientsComponent } from './clients.component';
+import { ClientsResolver } from './clients.resolver';
 
 const routes: Routes = [
-  Shell.childRoutes([{ path: 'clients', component: ClientsComponent, data: { title: marker('Clients') } }]),
+  Shell.childRoutes([
+    {
+      path: 'clients',
+      component: ClientsComponent,
+      data: { title: marker('Clients') },
+      resolve: { responses: ClientsResolver },
+    },
+  ]),
 ];
 
 @NgModule({

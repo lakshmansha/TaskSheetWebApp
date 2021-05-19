@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { IClient } from '@app/@core/interface';
+import { UtilityService } from '@app/@core';
+
+const utility = new UtilityService();
 
 @Component({
   selector: 'app-clients',
@@ -6,7 +12,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clients.component.scss'],
 })
 export class ClientsComponent implements OnInit {
-  constructor() {}
+  ClientList: IClient[] = [];
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.PageLoad();
+  }
+
+  PageLoad() {
+    this.ClientList = this.route.snapshot.data.responses['Clients'];
+  }
+
+  displayDate(date: string) {
+    return utility.getDateString(utility.getDateFrmJSON_T(date), '/');
+  }
 }

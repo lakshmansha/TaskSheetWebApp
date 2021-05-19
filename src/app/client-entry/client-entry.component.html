@@ -1,0 +1,60 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Client Add</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active">Client Add</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="clientEntry()" [formGroup]="entryForm" novalidate>
+                <div class="form-group">
+                  <label for="inputCode">Client Code</label>
+                  <input type="text" id="inputCode" formControlName="clientCode" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputName">Client Name</label>
+                  <input type="text" id="inputName" formControlName="clientName" class="form-control" />
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button href="javascript:void(0);" type="reset" class="btn btn-secondary">Cancel</button>
+                    <input type="submit" value="Create new Client" class="btn btn-success float-right" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

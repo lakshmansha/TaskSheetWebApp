@@ -22,12 +22,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   isLoading = false;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private registerService: RegisterService
-  ) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private registerService: RegisterService) {
     this.createForm();
   }
 

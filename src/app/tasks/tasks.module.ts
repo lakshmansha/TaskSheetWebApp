@@ -5,10 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TasksRoutingModule } from './tasks-routing.module';
 import { TasksComponent } from '../tasks/tasks.component';
 import { TasksService } from './tasks.service';
+import { TasksResolver } from './tasks.resolver';
 
 @NgModule({
   declarations: [TasksComponent],
   imports: [CommonModule, TranslateModule, TasksRoutingModule],
-  providers: [TasksService],
+  providers: [TasksService, TasksResolver],
 })
 export class TasksModule {}

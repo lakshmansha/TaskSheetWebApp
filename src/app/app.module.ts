@@ -20,6 +20,10 @@ import { ClientsModule } from './clients/clients.module';
 import { ProjectsModule } from './projects/projects.module';
 import { TasksModule } from './tasks/tasks.module';
 
+import { ClientEntryModule } from './client-entry/client-entry.module';
+import { ProjectEntryModule } from './project-entry/project-entry.module';
+import { TaskEntryModule } from './task-entry/task-entry.module';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 @NgModule({
@@ -33,13 +37,16 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     SharedModule,
     ShellModule,
+    RegisterModule,
+    AuthModule,
     DashboardModule,
     HomeModule,
     ClientsModule,
+    ClientEntryModule,
     ProjectsModule,
+    ProjectEntryModule,
     TasksModule,
-    RegisterModule,
-    AuthModule,
+    TaskEntryModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

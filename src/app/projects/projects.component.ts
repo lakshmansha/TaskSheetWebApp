@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { IProject } from '@app/@core/interface';
+import { UtilityService } from '@app/@core';
+
+const utility = new UtilityService();
 
 @Component({
   selector: 'app-projects',
@@ -6,7 +12,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  constructor() {}
+  ProjectList: IProject[] = [];
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.PageLoad();
+  }
+
+  PageLoad() {
+    this.ProjectList = this.route.snapshot.data.responses['Projects'];
+  }
+
+  displayDate(date: string) {
+    return utility.getDateString(utility.getDateFrmJSON_T(date), '/');
+  }
 }
