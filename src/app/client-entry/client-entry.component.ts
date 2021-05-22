@@ -57,7 +57,7 @@ export class ClientEntryComponent implements OnInit {
           this.router.navigate(['/clients'], { replaceUrl: true });
         },
         (error) => {
-          log.debug(`Clients error: ${error}`);
+          log.debug(`Client Entry error: ${error}`);
           this.error = error;
         }
       );

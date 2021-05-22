@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ITask } from '@app/@core/interface';
+import { Common } from '@app/@core';
+import { Feature } from '@env/environment';
+
+const com = new Common('Projects');
 
 @Component({
   selector: 'app-tasks',
@@ -6,7 +13,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  constructor() {}
+  //#region Feature Flags
 
-  ngOnInit(): void {}
+  CanDelete: boolean;
+
+  //#endregion
+
+  TaskList: ITask[] = [];
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.PageLoad();
+  }
+
+  PageLoad() {
+    this.CanDelete = Feature.CanDelete;
+    this.TaskList = this.route.snapshot.data.responses['Tasks'];
+  }
+
+  displayDate(date: Date) {
+    return com.getDateString(date, '/');
+  }
 }

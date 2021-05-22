@@ -7,9 +7,19 @@
 import { env } from './.env';
 
 export const environment = {
+  App_Name: 'TaskSheet App',
   production: true,
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',
+  apiUrl: 'http://localhost:5001/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  credentialsKey: 'credentials',
+};
+
+export const Feature = {
+  CanDelete: false,
+  Display: {
+    View: false,
+  },
 };

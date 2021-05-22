@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 import { Logger, UntilDestroy, untilDestroyed } from '@app/@core';
-import { environment } from '@env/environment';
 import { ProjectEntryService } from './project-entry.service';
 import { IClient } from '@app/@core/interface';
 
@@ -66,7 +65,7 @@ export class ProjectEntryComponent implements OnInit {
           this.router.navigate(['/projects'], { replaceUrl: true });
         },
         (error) => {
-          log.debug(`Project error: ${error}`);
+          log.debug(`Project Entry error: ${error}`);
           this.error = error;
         }
       );

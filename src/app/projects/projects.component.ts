@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IProject } from '@app/@core/interface';
-import { UtilityService } from '@app/@core';
+import { Common } from '@app/@core';
+import { Feature } from '@env/environment';
 
-const utility = new UtilityService();
+const com = new Common('Projects');
 
 @Component({
   selector: 'app-projects',
@@ -12,6 +13,12 @@ const utility = new UtilityService();
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+  //#region Feature Flags
+
+  CanDelete: boolean;
+
+  //#endregion
+
   ProjectList: IProject[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -21,10 +28,11 @@ export class ProjectsComponent implements OnInit {
   }
 
   PageLoad() {
+    this.CanDelete = Feature.CanDelete;
     this.ProjectList = this.route.snapshot.data.responses['Projects'];
   }
 
-  displayDate(date: string) {
-    return utility.getDateString(utility.getDateFrmJSON_T(date), '/');
+  displayDate(date: Date) {
+    return com.getDateString(date, '/');
   }
 }

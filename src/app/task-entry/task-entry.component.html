@@ -1,1 +1,120 @@
-<p>task-entry works!</p>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Task Add</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/tasks">Tasks</a></li>
+            <li class="breadcrumb-item active">Task Add</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="taskEntry()" [formGroup]="entryForm" novalidate>
+                <div class="form-group">
+                  <label for="inputClientCompany">Client Company</label>
+                  <select
+                    id="inputClientCompany"
+                    formControlName="clientId"
+                    class="form-control custom-select"
+                    (change)="filterProject(this.entryForm.get('clientId').value)"
+                  >
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of ClientList" [value]="item._id">{{ item.clientName }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputProject">Project</label>
+                  <select id="inputProject" formControlName="projectId" class="form-control custom-select">
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of filteredProject" [value]="item._id">{{ item.projectName }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputTrackingCode">Tracking Code</label>
+                  <input type="text" id="inputTrackingCode" formControlName="trackingCode" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputTaskType">Task Type</label>
+                  <select id="inputTaskType" formControlName="taskType" class="form-control custom-select">
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of TaskTypeList" [value]="item">{{ item }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputTaskName">Task Name</label>
+                  <input type="text" id="inputTaskName" formControlName="taskName" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputDescription">Task Description</label>
+                  <textarea
+                    id="inputDescription"
+                    formControlName="description"
+                    class="form-control"
+                    rows="2"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="inputResource">Resource</label>
+                  <input type="text" id="inputResource" formControlName="resource" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputEstimatedHrs">Estimated Hrs</label>
+                  <input type="number" id="inputEstimatedHrs" formControlName="estimatedHrs" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputTaskType">Status</label>
+                  <select id="inputTaskType" formControlName="status" class="form-control custom-select">
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of StatusList" [value]="item">{{ item }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Reported At:</label>
+                  <div class="input-group date" id="reportedAt" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#reportedAt" />
+                    <div class="input-group-append" data-target="#reportedAt" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button href="javascript:void(0);" type="reset" class="btn btn-secondary">Cancel</button>
+                    <input type="submit" value="Create new Task" class="btn btn-success float-right" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

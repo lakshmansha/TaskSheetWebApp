@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IClient } from '@app/@core/interface';
-import { UtilityService } from '@app/@core';
+import { Common } from '@app/@core';
+import { Feature } from '@env/environment';
 
-const utility = new UtilityService();
+const com = new Common();
 
 @Component({
   selector: 'app-clients',
@@ -12,6 +13,12 @@ const utility = new UtilityService();
   styleUrls: ['./clients.component.scss'],
 })
 export class ClientsComponent implements OnInit {
+  //#region Feature Flags
+
+  CanDelete: boolean;
+
+  //#endregion
+
   ClientList: IClient[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -21,10 +28,11 @@ export class ClientsComponent implements OnInit {
   }
 
   PageLoad() {
+    this.CanDelete = Feature.CanDelete;
     this.ClientList = this.route.snapshot.data.responses['Clients'];
   }
 
-  displayDate(date: string) {
-    return utility.getDateString(utility.getDateFrmJSON_T(date), '/');
+  displayDate(date: Date) {
+    return com.getDateString(date, '/');
   }
 }

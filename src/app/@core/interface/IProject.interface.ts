@@ -4,14 +4,14 @@ export interface IProject {
   projectCode: string;
   projectName: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Project implements IProject {
   _id: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   clientId: string;
   projectCode: string;
   projectName: string;

@@ -30,7 +30,7 @@
             <i class="far fa-plus"></i>
             <p>Client Entry</p>
           </a> -->
-          <button type="button" class="btn btn-tool" routerLink="/clients/0" routerLinkActive="active">
+          <button type="button" class="btn btn-tool" routerLink="/client/0" routerLinkActive="active">
             <i class="fas fa-plus mr-1"></i> Client Entry
           </button>
           <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -75,7 +75,7 @@
                   <i class="fas fa-pencil-alt"> </i>
                   Edit
                 </a>
-                <a class="btn btn-danger btn-sm" href="javascript:void(0);">
+                <a class="btn btn-danger btn-sm" href="javascript:void(0);" *ngIf="CanDelete">
                   <i class="fas fa-trash"> </i>
                   Delete
                 </a>
