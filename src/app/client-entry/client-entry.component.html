@@ -4,13 +4,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Client Add</h1>
+          <h1 class="m-0">Client {{ view }}</h1>
         </div>
         <!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-            <li class="breadcrumb-item active">Client Add</li>
+            <li class="breadcrumb-item"><a routerLink="/clients">Clients</a></li>
+            <li class="breadcrumb-item active">Client {{ view }}</li>
           </ol>
         </div>
         <!-- /.col -->
@@ -47,7 +48,12 @@
                 <div class="row">
                   <div class="col-12">
                     <button href="javascript:void(0);" type="reset" class="btn btn-secondary">Cancel</button>
-                    <input type="submit" value="Create new Client" class="btn btn-success float-right" />
+                    <input
+                      type="submit"
+                      [value]="btnView"
+                      [disabled]="entryForm.invalid"
+                      class="btn btn-success float-right"
+                    />
                   </div>
                 </div>
               </form>

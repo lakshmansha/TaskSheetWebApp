@@ -11,7 +11,13 @@ const routes: Routes = [
     {
       path: 'project/:id',
       component: ProjectEntryComponent,
-      data: { title: marker('Project Entry') },
+      data: { title: marker('Project Update') },
+      resolve: { responses: ProjectEntryResolver },
+    },
+    {
+      path: 'project',
+      component: ProjectEntryComponent,
+      data: { title: marker('Project Add') },
       resolve: { responses: ProjectEntryResolver },
     },
   ]),

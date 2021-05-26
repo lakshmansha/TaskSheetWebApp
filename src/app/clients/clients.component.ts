@@ -35,4 +35,8 @@ export class ClientsComponent implements OnInit {
   displayDate(date: Date) {
     return com.getDateString(date, '/');
   }
+
+  ToEdit(id: string) {
+    this.router.navigateByUrl('/client/' + id);
+  }
 }

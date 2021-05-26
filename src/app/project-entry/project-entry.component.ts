@@ -5,7 +5,7 @@ import { finalize } from 'rxjs/operators';
 
 import { Logger, UntilDestroy, untilDestroyed } from '@app/@core';
 import { ProjectEntryService } from './project-entry.service';
-import { IClient } from '@app/@core/interface';
+import { IClient, IProject } from '@app/@core/interface';
 
 const log = new Logger('Project Entry');
 
@@ -24,6 +24,14 @@ let toastr = window.toastr; // ok now
   styleUrls: ['./project-entry.component.scss'],
 })
 export class ProjectEntryComponent implements OnInit {
+  //#region Switch Variables
+
+  view: string;
+  btnView: string;
+  projectId: string;
+
+  //#endregion
+
   error: string | undefined;
   entryForm!: FormGroup;
   isLoading = false;
@@ -45,11 +53,22 @@ export class ProjectEntryComponent implements OnInit {
 
   PageLoad() {
     this.ClientList = this.route.snapshot.data.responses['Clients'];
+    const projectEntry = this.route.snapshot.data.responses['Entry'];
+    if (projectEntry !== undefined) {
+      this.updateForm(projectEntry);
+    } else {
+      this.projectId = '';
+      this.btnView = 'Create new Project';
+      this.view = 'Add';
+    }
   }
 
   projectEntry() {
     this.isLoading = true;
-    const project$ = this.projectEntryService.add(this.entryForm.value);
+    const project$ =
+      this.projectId !== ''
+        ? this.projectEntryService.update(this.projectId, this.entryForm.value)
+        : this.projectEntryService.add(this.entryForm.value);
     project$
       .pipe(
         finalize(() => {
@@ -77,6 +96,18 @@ export class ProjectEntryComponent implements OnInit {
       projectCode: ['', Validators.required],
       projectName: ['', Validators.required],
       description: ['', Validators.required],
+    });
+  }
+
+  private updateForm(projectEntry: IProject) {
+    this.projectId = projectEntry._id;
+    this.view = 'Update';
+    this.btnView = 'Update Project';
+    this.entryForm.setValue({
+      clientId: projectEntry.clientId,
+      projectCode: projectEntry.projectCode,
+      projectName: projectEntry.projectName,
+      description: projectEntry.description,
     });
   }
 }

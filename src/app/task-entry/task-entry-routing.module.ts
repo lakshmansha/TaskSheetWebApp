@@ -11,7 +11,13 @@ const routes: Routes = [
     {
       path: 'task/:id',
       component: TaskEntryComponent,
-      data: { title: marker('Task Entry') },
+      data: { title: marker('Task Update') },
+      resolve: { responses: TaskEntryResolver },
+    },
+    {
+      path: 'task',
+      component: TaskEntryComponent,
+      data: { title: marker('Task Add') },
       resolve: { responses: TaskEntryResolver },
     },
   ]),

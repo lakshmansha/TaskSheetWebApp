@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { IReturn } from '@app/@core/interface';
+import { Client, IReturn } from '@app/@core/interface';
+import { ModelMapper } from '@app/@core/mapper';
 
 export interface ClientEntryContext {
   clientCode: string;
@@ -24,6 +25,17 @@ export class ClientEntryService {
     } as ClientEntryContext;
 
     return rtncontext;
+  }
+
+  getById(id: string): Observable<IReturn> {
+    const Url = environment.apiUrl + '/clients/' + id;
+
+    return this.http.get<IReturn>(Url).pipe(
+      map((res) => {
+        res.data = new ModelMapper(Client).map(res.data);
+        return res.data;
+      })
+    );
   }
 
   add(context: ClientEntryContext): Observable<IReturn> {

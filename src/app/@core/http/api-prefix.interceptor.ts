@@ -26,6 +26,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
         withCredentials: true,
         setHeaders: {
           'Content-Type': 'application/json',
+          Authorization: authToken.token,
         },
       });
     }

@@ -35,4 +35,8 @@ export class TasksComponent implements OnInit {
   displayDate(date: Date) {
     return com.getDateString(date, '/');
   }
+
+  ToEdit(id: string) {
+    this.router.navigateByUrl('/task/' + id);
+  }
 }
