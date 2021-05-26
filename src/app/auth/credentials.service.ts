@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModelMapper, propertyMap } from '@app/@core/mapper';
 import { environment } from '@env/environment';
+import jwt_decode, { JwtPayload } from 'jwt-decode';
 
 export interface Credentials {
   // Customize received credentials here
@@ -49,6 +50,53 @@ export class CredentialsService {
     return !!this.credentials;
   }
 
+  isTokenValid(): boolean {
+    const rtnval = true;
+    const expiresIn = this._tokenData.expiresIn;
+    if (this.isEmpty(expiresIn) && this.tokenExpired(expiresIn)) {
+      return false;
+    }
+
+    return rtnval;
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode<JwtPayload>(token);
+
+    if (decoded.exp === undefined) return null;
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) token = this._tokenData.token;
+    if (!token) return true;
+
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) return false;
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  private isEmpty = (value: string | number | object): boolean => {
+    if (value === null) {
+      return true;
+    } else if (typeof value !== 'number' && value === '') {
+      return true;
+    } else if (value === 'undefined' || value === undefined) {
+      return true;
+    } else if (value !== null && typeof value === 'object' && !Object.keys(value).length) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  private tokenExpired = (expiresIn: string) => {
+    const expiry = parseInt(expiresIn, 0);
+    return Math.floor(new Date().getTime() / 1000) >= expiry;
+  };
   /**
    * Gets the user credentials.
    * @return The user credentials or null if the user is not authenticated.
@@ -90,7 +138,7 @@ export class CredentialsService {
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem(credentialsKey, JSON.stringify(credentials));
-      this.setTokenData(credentials.token);
+      this._tokenData = this.setTokenData(credentials.token);
     } else {
       sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);

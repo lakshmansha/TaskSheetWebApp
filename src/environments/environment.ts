@@ -11,13 +11,21 @@
 import { env } from './.env';
 
 export const environment = {
+  App_Name: 'TaskSheet App',
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '/api',
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'http://localhost:5001/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   credentialsKey: 'credentials',
+};
+
+export const Feature = {
+  CanDelete: false,
+  Display: {
+    View: false,
+  },
 };
 
 /*

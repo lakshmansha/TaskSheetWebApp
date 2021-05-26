@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
+import { LookupService } from './lookup.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
@@ -25,6 +26,7 @@ import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy,
     },
+    LookupService,
   ],
 })
 export class CoreModule {

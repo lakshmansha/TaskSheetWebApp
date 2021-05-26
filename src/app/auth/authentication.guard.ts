@@ -13,6 +13,7 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private router: Router, private credentialsService: CredentialsService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    // && this.credentialsService.isTokenExpired()
     if (this.credentialsService.isAuthenticated()) {
       return true;
     }

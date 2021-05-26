@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Logger } from '@app/@core';
 import { AuthenticationService, CredentialsService } from '@app/auth';
 
+const log = new Logger('Header');
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,7 +26,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+    this.authenticationService.logout().subscribe(
+      () => this.router.navigate(['/login'], { replaceUrl: true }),
+      (error) => {
+        log.error(error);
+      }
+    );
   }
 
   get username(): string | null {

@@ -1,3 +1,6 @@
+import { Common } from '../common.service';
+
+const com = new Common('Model Mapper');
 export class ModelMapper<T> {
   _propertyMapping: any;
   _target: any;
@@ -18,7 +21,11 @@ export class ModelMapper<T> {
     Object.keys(source).forEach((key) => {
       const targetKeys = Object.keys(this._target);
       if (targetKeys.indexOf(key) === -1) {
-        this._target[key] = source[key];
+        if (com.IsDateCol(key)) {
+          this._target[key] = com.getDateFrmJSON_T(source[key]);
+        } else {
+          this._target[key] = source[key];
+        }
       }
     });
     return this._target;
