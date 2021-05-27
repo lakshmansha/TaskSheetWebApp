@@ -19,6 +19,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ClientsModule } from './clients/clients.module';
 import { ProjectsModule } from './projects/projects.module';
 import { TasksModule } from './tasks/tasks.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { ClientEntryModule } from './client-entry/client-entry.module';
 import { ProjectEntryModule } from './project-entry/project-entry.module';
@@ -41,6 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
     AuthModule,
     DashboardModule,
     HomeModule,
+    ProfileModule,
     ClientsModule,
     ClientEntryModule,
     ProjectsModule,
