@@ -5,7 +5,7 @@ import { ITask } from '@app/@core/interface';
 import { Common } from '@app/@core';
 import { Feature } from '@env/environment';
 
-const com = new Common('Projects');
+const com = new Common('Tasks');
 
 @Component({
   selector: 'app-tasks',

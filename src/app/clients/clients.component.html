@@ -81,6 +81,9 @@
                 </a>
               </td>
             </tr>
+            <tr *ngIf="ClientList.length === 0">
+              <td colspan="5">No Data Available</td>
+            </tr>
           </tbody>
         </table>
       </div>

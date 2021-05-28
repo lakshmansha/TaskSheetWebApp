@@ -27,6 +27,8 @@ import { TaskEntryModule } from './task-entry/task-entry.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TrackersModule } from './trackers/trackers.module';
+import { TrackerEntryModule } from './tracker-entry/tracker-entry.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -49,6 +51,8 @@ import { AppRoutingModule } from './app-routing.module';
     ProjectEntryModule,
     TasksModule,
     TaskEntryModule,
+    TrackersModule,
+    TrackerEntryModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

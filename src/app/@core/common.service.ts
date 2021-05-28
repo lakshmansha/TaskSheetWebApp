@@ -21,7 +21,7 @@ export class Common {
     'December',
   ];
 
-  DateKey = ['createdAt', 'reportedAt', 'updatedAt'];
+  DateKey = ['createdAt', 'reportedAt', 'updatedAt', 'checkIn', 'checkOut'];
 
   private _configContext: any | null;
   private _defPOClaims: any[] = [];

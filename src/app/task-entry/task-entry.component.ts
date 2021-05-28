@@ -85,7 +85,7 @@ export class TaskEntryComponent implements OnInit {
     $('#reportedAt').on('change.datetimepicker', (e: any) => {
       var formatedValue = e.date._d;
 
-      this.entryForm.setValue({
+      this.entryForm.patchValue({
         reportedAt: formatedValue,
       });
       console.log(formatedValue);

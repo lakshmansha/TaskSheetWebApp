@@ -18,10 +18,13 @@ export class ClientsService {
 
     return this.http.get<IReturn>(Url).pipe(
       map((res) => {
+        const resData = {} as IReturn;
+        resData.data = [];
         res.data.forEach((element: any) => {
           element = new ModelMapper(Client).map(element);
+          resData.data.push(element);
         });
-        return res.data;
+        return resData.data;
       })
     );
   }
