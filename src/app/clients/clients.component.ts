@@ -16,6 +16,7 @@ export class ClientsComponent implements OnInit {
   //#region Feature Flags
 
   CanDelete: boolean;
+  CanView: boolean;
 
   //#endregion
 
@@ -29,6 +30,7 @@ export class ClientsComponent implements OnInit {
 
   PageLoad() {
     this.CanDelete = Feature.CanDelete;
+    this.CanView = Feature.CanView;
     this.ClientList = this.route.snapshot.data.responses['Clients'];
   }
 

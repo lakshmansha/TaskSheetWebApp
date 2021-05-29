@@ -17,6 +17,7 @@ export class TrackersComponent implements OnInit {
   //#region Feature Flags
 
   CanDelete: boolean;
+  CanView: boolean;
 
   //#endregion
 
@@ -39,6 +40,7 @@ export class TrackersComponent implements OnInit {
 
   PageLoad() {
     this.CanDelete = Feature.CanDelete;
+    this.CanView = Feature.CanView;
     this.TrackerList = this.route.snapshot.data.responses['Trackers'];
     this.TaskList = this.route.snapshot.data.responses['Tasks'];
   }

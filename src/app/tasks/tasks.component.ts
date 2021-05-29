@@ -16,6 +16,7 @@ export class TasksComponent implements OnInit {
   //#region Feature Flags
 
   CanDelete: boolean;
+  CanView: boolean;
 
   //#endregion
 
@@ -29,6 +30,7 @@ export class TasksComponent implements OnInit {
 
   PageLoad() {
     this.CanDelete = Feature.CanDelete;
+    this.CanView = Feature.CanView;
     this.TaskList = this.route.snapshot.data.responses['Tasks'];
   }
 

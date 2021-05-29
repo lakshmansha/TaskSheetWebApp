@@ -11,7 +11,7 @@ export const environment = {
   production: true,
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',
-  apiUrl: 'http://localhost:5001/api',
+  apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   credentialsKey: 'credentials',

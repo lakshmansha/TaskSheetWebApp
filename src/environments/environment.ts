@@ -15,7 +15,7 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '/api',
-  apiUrl: 'http://localhost:5001/api',
+  apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   credentialsKey: 'credentials',
@@ -23,9 +23,7 @@ export const environment = {
 
 export const Feature = {
   CanDelete: false,
-  Display: {
-    View: false,
-  },
+  CanView: false,
 };
 
 /*

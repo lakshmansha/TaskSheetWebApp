@@ -28,7 +28,8 @@
               "src/apple-touch-icon.png",
               "src/robots.txt",
               "src/manifest.webmanifest",
-              "src/assets"
+              "src/assets",
+              "src/web.Config"
             ],
             "styles": [
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
