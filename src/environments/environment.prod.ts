@@ -14,12 +14,10 @@ export const environment = {
   apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
-  credentialsKey: 'credentials',
+  credentialsKey: 'jnwoi3u4542q6462',
 };
 
 export const Feature = {
   CanDelete: false,
-  Display: {
-    View: false,
-  },
+  CanView: false,
 };
