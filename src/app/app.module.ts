@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@core';
@@ -36,6 +38,12 @@ import { TrackerEntryModule } from './tracker-entry/tracker-entry.module';
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
+    BlockUIModule.forRoot({
+      message: 'Loading...',
+    }), // Import BlockUIModule
+    BlockUIHttpModule.forRoot({
+      blockAllRequestsInProgress: true,
+    }), // Import Block UI Http Module
     NgbModule,
     CoreModule,
     SharedModule,

@@ -26,3 +26,11 @@ Application Yet To Come,
 - Create Clients, Projects, Tasks
 
 - Start Logging Hours via Tracker Modules
+
+## API Reference
+
+- TaskSheet PostMan API Documents - [Click Here](https://documenter.getpostman.com/view/1589172/TzXzDcSp)
+
+## Reference
+
+- UI Powered by AdminLTE - [Click Here](https://adminlte.io/themes/dev/AdminLTE/)
