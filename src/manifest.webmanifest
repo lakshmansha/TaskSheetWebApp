@@ -1,6 +1,6 @@
 {
-  "name": "TaskSheetWebApp",
-  "short_name": "TaskSheetWebApp",
+  "name": "TaskSheet",
+  "short_name": "TaskSheet",
   "theme_color": "#488aff",
   "background_color": "#488aff",
   "display": "standalone",
