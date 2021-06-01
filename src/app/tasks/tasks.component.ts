@@ -17,6 +17,7 @@ export class TasksComponent implements OnInit {
 
   CanDelete: boolean;
   CanView: boolean;
+  MapTracker: boolean;
 
   //#endregion
 
@@ -31,6 +32,7 @@ export class TasksComponent implements OnInit {
   PageLoad() {
     this.CanDelete = Feature.CanDelete;
     this.CanView = Feature.CanView;
+    this.MapTracker = Feature.Tasks.MapTracker;
     this.TaskList = this.route.snapshot.data.responses['Tasks'];
   }
 
@@ -40,5 +42,13 @@ export class TasksComponent implements OnInit {
 
   ToEdit(id: string) {
     this.router.navigateByUrl('/task/' + id);
+  }
+
+  setNewTracker(status: string) {
+    return status === 'In-Progress';
+  }
+
+  ToTracker(id: string) {
+    this.router.navigate(['/tracker'], { queryParams: { taskId: id } });
   }
 }

@@ -38,7 +38,7 @@ export class TrackerEntryService {
       createBy: context.createBy,
     } as TrackerEntryContext;
 
-    context.createBy = context.createBy ? context.createBy : this.credentialsService.credentials.username;
+    rtncontext.createBy = context.createBy ? context.createBy : this.credentialsService.credentials.username;
 
     return rtncontext;
   }

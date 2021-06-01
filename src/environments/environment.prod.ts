@@ -20,4 +20,7 @@ export const environment = {
 export const Feature = {
   CanDelete: false,
   CanView: false,
+  Tasks: {
+    MapTracker: true,
+  },
 };

@@ -74,6 +74,8 @@ export class TrackerEntryComponent implements OnInit {
       this.view = 'Add';
       this.LoadCheckIn(new Date());
       this.LoadCheckOut(new Date());
+      const taskId = this.route.snapshot.queryParams['taskId'];
+      if (taskId) this.updateFormByTask(taskId);
     }
   }
 
@@ -169,6 +171,18 @@ export class TrackerEntryComponent implements OnInit {
     });
 
     this.entryForm.get('createBy').disable();
+  }
+
+  private updateFormByTask(taskId: string) {
+    const projectId = this.getProjectId(taskId);
+    const clientId = this.getClientId(projectId);
+    this.filterProject(clientId);
+    this.filterTask(projectId);
+    this.entryForm.patchValue({
+      clientId: clientId,
+      projectId: projectId,
+      taskId: taskId,
+    });
   }
 
   private updateForm(trackerEntry: ITracker) {

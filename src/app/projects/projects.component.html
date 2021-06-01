@@ -53,7 +53,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of ProjectList">
+            <tr *ngFor="let item of ProjectList | orderBy: 'desc':'projectCode'">
               <td>{{ item.projectCode }}</td>
               <td>
                 <a>
