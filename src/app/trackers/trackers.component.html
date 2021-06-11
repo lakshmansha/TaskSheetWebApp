@@ -61,7 +61,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of TrackerList | filter: 'taskId':filterForm.get('taskId').value">
+            <tr
+              *ngFor="
+                let item of TrackerList | orderBy: 'desc':'taskId' | filter: 'taskId':filterForm.get('taskId').value
+              "
+            >
               <td>{{ item.taskId }}</td>
               <td>
                 <a>

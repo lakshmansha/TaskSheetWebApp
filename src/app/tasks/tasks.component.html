@@ -46,9 +46,10 @@
           <thead>
             <tr>
               <th style="width: 1%; text-align: center">#</th>
-              <th style="width: 50%">Task Name</th>
+              <th style="width: 38%">Task Name</th>
               <th style="width: 10%">Resource</th>
               <th style="width: 10%">Status</th>
+              <th style="width: 12%">Estimated Hrs</th>
               <th style="width: 10%">Reported At</th>
               <th style="width: 40%"></th>
             </tr>
@@ -69,6 +70,11 @@
               <td>
                 <a>
                   {{ item.status }}
+                </a>
+              </td>
+              <td>
+                <a>
+                  {{ item.estimatedHrs }}
                 </a>
               </td>
               <td>{{ displayDate(item.reportedAt) }}</td>
