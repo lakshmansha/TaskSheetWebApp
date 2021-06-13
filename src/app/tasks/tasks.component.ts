@@ -23,6 +23,13 @@ export class TasksComponent implements OnInit {
 
   TaskList: ITask[] = [];
 
+  //#region Pagination
+
+  page: number = 1;
+  pageSize: number = 8;
+
+  //#endregion
+
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {

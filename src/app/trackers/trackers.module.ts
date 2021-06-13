@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '@app/@shared';
 
@@ -11,7 +12,7 @@ import { TrackersService } from './trackers.service';
 
 @NgModule({
   declarations: [TrackersComponent],
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule, SharedModule, TrackersRoutingModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, NgbModule, SharedModule, TrackersRoutingModule],
   providers: [TrackersService, TrackersComponent],
 })
 export class TrackersModule {}

@@ -2,6 +2,11 @@
   "name": "task-sheet-web-app",
   "version": "1.0.0",
   "private": true,
+  "description": "Application to Maintain your Task for Client Basis",
+  "author": {
+    "name": "Lakshman",
+    "email": "haranhari_38@outlook.com"
+  },
   "scripts": {
     "ng": "ng",
     "build": "npm run write:env -s && ng build --prod",

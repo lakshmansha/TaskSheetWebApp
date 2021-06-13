@@ -53,7 +53,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of ProjectList | orderBy: 'desc':'projectCode'">
+            <tr *ngFor="let item of ProjectList | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
               <td>{{ item.projectCode }}</td>
               <td>
                 <a>
@@ -86,6 +86,11 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="ProjectList.length"></ngb-pagination>
+        </ul>
       </div>
     </div>
   </div>

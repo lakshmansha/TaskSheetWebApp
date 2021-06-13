@@ -20,6 +20,13 @@ export class ClientsComponent implements OnInit {
 
   //#endregion
 
+  //#region Pagination
+
+  page: number = 1;
+  pageSize: number = 8;
+
+  //#endregion
+
   ClientList: IClient[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}

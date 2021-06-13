@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '@app/@shared';
 
@@ -11,7 +12,7 @@ import { ProjectsResolver } from './projects.resolver';
 
 @NgModule({
   declarations: [ProjectsComponent],
-  imports: [CommonModule, TranslateModule, SharedModule, ProjectsRoutingModule],
+  imports: [CommonModule, TranslateModule, NgbModule, SharedModule, ProjectsRoutingModule],
   providers: [ProjectsService, ProjectsResolver],
 })
 export class ProjectsModule {}

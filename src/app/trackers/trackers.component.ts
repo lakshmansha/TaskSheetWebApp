@@ -27,6 +27,13 @@ export class TrackersComponent implements OnInit {
 
   //#endregion
 
+  //#region Pagination
+
+  page: number = 1;
+  pageSize: number = 7;
+
+  //#endregion
+
   TrackerList: ITracker[] = [];
   TaskList: ITask[] = [];
 

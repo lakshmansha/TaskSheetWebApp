@@ -55,7 +55,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of TaskList | orderBy: 'desc':'trackingCode'">
+            <tr *ngFor="let item of TaskList | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
               <td>{{ item.trackingCode }}</td>
               <td>
                 <a>
@@ -107,6 +107,11 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="TaskList.length"></ngb-pagination>
+        </ul>
       </div>
     </div>
   </div>

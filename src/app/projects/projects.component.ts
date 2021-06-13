@@ -20,6 +20,13 @@ export class ProjectsComponent implements OnInit {
 
   //#endregion
 
+  //#region Pagination
+
+  page: number = 1;
+  pageSize: number = 8;
+
+  //#endregion
+
   ProjectList: IProject[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
