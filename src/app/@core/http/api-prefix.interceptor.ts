@@ -19,7 +19,12 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
       request = request.clone({ url: environment.serverUrl + request.url });
     }
 
-    if (/^(http|https):/i.test(request.url) && !request.url.includes('login') && !request.url.includes('jokes')) {
+    if (
+      /^(http|https):/i.test(request.url) &&
+      !request.url.includes('login') &&
+      !request.url.includes('signup') &&
+      !request.url.includes('jokes')
+    ) {
       const authToken = this.credentialsService.tokenData;
       request = request.clone({
         url: request.url,

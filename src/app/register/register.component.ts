@@ -10,6 +10,16 @@ import { RegisterService } from './register.service';
 
 const log = new Logger('Register');
 
+declare global {
+  interface Window {
+    toastr: any;
+  }
+}
+
+let toastr = window.toastr; // ok now
+
+declare var $: any;
+
 @UntilDestroy()
 @Component({
   selector: 'app-register',
@@ -23,6 +33,7 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private registerService: RegisterService) {
+    toastr.options = { positionClass: 'toast-top-right' };
     this.createForm();
   }
 
@@ -42,7 +53,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (register) => {
           log.debug(`${register.message}`);
-          this.router.navigate(['/'], { replaceUrl: true });
+          toastr.success(`${register.message}`);
+          this.router.navigate(['/login'], { replaceUrl: true });
         },
         (error) => {
           log.debug(`Register error: ${error}`);
