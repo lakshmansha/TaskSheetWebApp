@@ -11,11 +11,22 @@
 import { env } from './.env';
 
 export const environment = {
+  App_Name: 'TaskSheet App',
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '/api',
+  apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  credentialsKey: 'credentials',
+};
+
+export const Feature = {
+  CanDelete: false,
+  CanView: false,
+  Tasks: {
+    MapTracker: true,
+  },
 };
 
 /*

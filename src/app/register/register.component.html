@@ -1,0 +1,111 @@
+<div class="hold-transition register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <img src="assets/tasksheet-logo.png" alt="Logo" height="85" width="160" />
+        <!-- <h1><b>TaskSheet</b></h1> -->
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Register a new membership</p>
+        <form (ngSubmit)="register()" [formGroup]="registerForm" novalidate>
+          <div class="form-group">
+            <label class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                autocomplete="username"
+                placeholder="Full name"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </label>
+            <label class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="Email"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </label>
+            <label class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                autocomplete="password"
+                placeholder="Password"
+                (change)="onPasswordChange()"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </label>
+            <label class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="confirmPassword"
+                placeholder="Retype password"
+                (change)="onPasswordChange()"
+                required
+              />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </label>
+            <label>
+              <span class="text-danger" *ngIf="confirm_password.hasError('mismatch')">Password do not match.</span>
+            </label>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="agreeTerms" name="terms" formControlName="agree" value="agree" required />
+                <label for="agreeTerms"> I agree to register </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" [disabled]="registerForm.invalid || isLoading" class="btn btn-primary btn-block">
+                Register
+              </button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+        <!--       
+            <div class="social-auth-links text-center">
+              <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i>
+                Sign up using Facebook
+              </a>
+              <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i>
+                Sign up using Google+
+              </a>
+            </div> -->
+
+        <a routerLink="/login" routerLinkActive="active" class="text-center">I already have a membership</a>
+      </div>
+      <!-- /.form-box -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>

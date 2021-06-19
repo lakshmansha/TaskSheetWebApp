@@ -7,11 +7,65 @@
 @import "theme/theme-variables";
 
 // 3rd party libraries
-@import "~bootstrap/scss/bootstrap";
-@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "~@fortawesome/fontawesome-free/scss/brands.scss";
-@import "~@fortawesome/fontawesome-free/scss/regular.scss";
-@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+// @import "~bootstrap/scss/bootstrap";
+// @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+// @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+// @import "~@fortawesome/fontawesome-free/scss/regular.scss";
+// @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 
 // Theme customization
 @import "theme/theme";
+
+.fl-height {
+  height: 100vh !important;
+}
+
+// Custom Icons for Menus
+
+.fap-dashboard {
+  content: url(assets/svg/dashboard.svg);
+}
+
+.fap-master {
+  content: url(assets/svg/master.svg);
+}
+
+.fap-clients {
+  mask: url(assets/svg/clients.svg);
+}
+
+.fap-projects {
+  mask: url(assets/svg/projects.svg);
+}
+
+.fap-tasks {
+  mask: url(assets/svg/tasks.svg);
+}
+
+.fap-entry {
+  content: url(assets/svg/entry.svg);
+}
+
+.fap-client-entry {
+  mask: url(assets/svg/client-entry.svg);
+}
+
+.fap-project-entry {
+  mask: url(assets/svg/project-entry.svg);
+}
+
+.fap-task-entry {
+  mask: url(assets/svg/task-entry.svg);
+}
+
+.fap-transaction {
+  content: url(assets/svg/transaction.svg);
+}
+
+.fap-trackers {
+  mask: url(assets/svg/trackers.svg);
+}
+
+.fap-tracker-entry {
+  mask: url(assets/svg/tracker-entry.svg);
+}

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!-- needs to be right at the top to prevent Chrome from reloading favicon on every route change -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <title>TaskSheetWebApp</title>
+    <title>TaskSheet</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#4e8ef7" />
@@ -14,8 +14,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
   </head>
-  <body>
+  <body class="hold-transition sidebar-mini fl-height">
     <!--[if lt IE 10]>
       <p>
         You are using an <strong>outdated</strong> browser. Please
@@ -23,7 +29,11 @@
       </p>
     <![endif]-->
     <noscript>
-      <p>This page requires JavaScript to work properly. Please enable JavaScript in your browser.</p>
+      <!-- <p>This page requires JavaScript to work properly. Please enable JavaScript in your browser.</p> -->
+      <img src="assets/Logo.png" alt="App Icon" width="48" height="48" />
+
+      <h1>TaskSheet</h1>
+      <h2>Please wait...</h2>
     </noscript>
     <app-root></app-root>
   </body>

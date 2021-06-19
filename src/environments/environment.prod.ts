@@ -7,9 +7,20 @@
 import { env } from './.env';
 
 export const environment = {
+  App_Name: 'TaskSheet App',
   production: true,
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',
+  apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  credentialsKey: 'jnwoi3u4542q6462',
+};
+
+export const Feature = {
+  CanDelete: false,
+  CanView: false,
+  Tasks: {
+    MapTracker: true,
+  },
 };

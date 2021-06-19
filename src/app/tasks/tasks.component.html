@@ -1,0 +1,118 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Tasks</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active">Tasks</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <div class="content">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Tasks</h3>
+        <div class="card-tools">
+          <!-- <a routerLink="/client/0" routerLinkActive="active" class="btn btn-primary">
+                <i class="far fa-plus"></i>
+                <p>Client Entry</p>
+              </a> -->
+          <button type="button" class="btn btn-tool" routerLink="/task" routerLinkActive="active">
+            <i class="fas fa-plus mr-1"></i> Tasks Entry
+          </button>
+          <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button> -->
+          <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                      <i class="fas fa-times"></i>
+                    </button> -->
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped projects">
+          <thead>
+            <tr>
+              <th style="width: 1%; text-align: center">#</th>
+              <th style="width: 38%">Task Name</th>
+              <th style="width: 10%">Resource</th>
+              <th style="width: 10%">Status</th>
+              <th style="width: 12%">Estimated Hrs</th>
+              <th style="width: 10%">Reported At</th>
+              <th style="width: 40%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of TaskList | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
+              <td>{{ item.trackingCode }}</td>
+              <td>
+                <a>
+                  {{ item.taskName }}
+                </a>
+              </td>
+              <td>
+                <a>
+                  {{ item.resource }}
+                </a>
+              </td>
+              <td>
+                <a>
+                  {{ item.status }}
+                </a>
+              </td>
+              <td>
+                <a>
+                  {{ item.estimatedHrs }}
+                </a>
+              </td>
+              <td>{{ displayDate(item.reportedAt) }}</td>
+              <td class="project-actions text-right">
+                <a
+                  class="btn btn-info btn-sm"
+                  href="javascript:void(0);"
+                  (click)="ToTracker(item._id)"
+                  *ngIf="setNewTracker(item.status)"
+                >
+                  <i class="fas fa-plus"> </i>
+                  Add Tracker
+                </a>
+                <a class="btn btn-primary btn-sm" href="javascript:void(0);" *ngIf="CanView">
+                  <i class="fas fa-folder"> </i>
+                  View
+                </a>
+                <a class="btn btn-info btn-sm" href="javascript:void(0);" (click)="ToEdit(item._id)">
+                  <i class="fas fa-pencil-alt"> </i>
+                  Edit
+                </a>
+                <a class="btn btn-danger btn-sm" href="javascript:void(0);" *ngIf="CanDelete">
+                  <i class="fas fa-trash"> </i>
+                  Delete
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="TaskList.length === 0">
+              <td colspan="6">No Data Available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="TaskList.length"></ngb-pagination>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

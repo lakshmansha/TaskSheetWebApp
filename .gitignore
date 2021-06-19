@@ -59,3 +59,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# AdminLTE Assets
+/src/assets/img/*

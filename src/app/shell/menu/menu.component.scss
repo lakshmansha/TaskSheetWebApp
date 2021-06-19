@@ -1,0 +1,46 @@
+$fap-iconcolor: #fff;
+$fap-iconactive: #343a40;
+
+.main-sidebar {
+  min-height: 100% !important;
+}
+
+.fa-user-circle {
+  color: #fff;
+}
+
+.dark-mode .fa-user-circle {
+  color: #fff;
+}
+
+.nav-sidebar {
+  .nav-link {
+    display: flex;
+
+    p {
+      margin-left: 5px;
+    }
+  }
+
+  .nav-treeview {
+    .nav-icon {
+      width: 1.3rem;
+    }
+
+    .nav-link {
+      p {
+        margin-left: 8px;
+      }
+
+      .far {
+        background-color: $fap-iconcolor;
+      }
+    }
+
+    .nav-link.active {
+      .far {
+        background-color: $fap-iconactive;
+      }
+    }
+  }
+}

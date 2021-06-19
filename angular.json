@@ -28,10 +28,25 @@
               "src/apple-touch-icon.png",
               "src/robots.txt",
               "src/manifest.webmanifest",
-              "src/assets"
+              "src/assets",
+              "src/web.Config"
             ],
-            "styles": ["src/main.scss"],
-            "scripts": []
+            "styles": [
+              "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
+              "node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+              "node_modules/admin-lte/plugins/toastr/toastr.min.css",
+              "node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+              "node_modules/admin-lte/dist/css/adminlte.min.css",
+              "src/main.scss"
+            ],
+            "scripts": [
+              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/admin-lte/plugins/toastr/toastr.min.js",
+              "node_modules/admin-lte/plugins/moment/moment.min.js",
+              "node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
+              "node_modules/admin-lte/dist/js/adminlte.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -55,6 +70,7 @@
                 }
               ],
               "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

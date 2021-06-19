@@ -1,0 +1,123 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Tracker {{ view }}</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/trackers">Trackers</a></li>
+            <li class="breadcrumb-item active">Tracker {{ view }}</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">General</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="trackerEntry()" [formGroup]="entryForm" novalidate>
+                <div class="form-group">
+                  <label for="inputClientCompany">Client Company</label>
+                  <select
+                    id="inputClientCompany"
+                    formControlName="clientId"
+                    class="form-control custom-select"
+                    (change)="filterProject(this.entryForm.get('clientId').value)"
+                  >
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of ClientList" [value]="item._id">{{ item.clientName }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputProject">Project</label>
+                  <select
+                    id="inputProject"
+                    formControlName="projectId"
+                    class="form-control custom-select"
+                    (change)="filterTask(this.entryForm.get('projectId').value)"
+                  >
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of filteredProject" [value]="item._id">{{ item.projectName }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputTask">Task</label>
+                  <select id="inputTask" formControlName="taskId" class="form-control custom-select">
+                    <option selected disabled>Select one</option>
+                    <option *ngFor="let item of filteredTask" [value]="item._id">{{ item.taskName }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Check-In:</label>
+                  <div class="input-group date" id="checkIn" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#checkIn" />
+                    <div class="input-group-append" data-target="#checkIn" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Check-Out:</label>
+                  <div class="input-group date" id="checkOut" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#checkOut" />
+                    <div class="input-group-append" data-target="#checkOut" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputWorkNotes">Work Notes</label>
+                  <textarea id="inputWorkNotes" formControlName="workNotes" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="inputActualHrs">Actual Hrs (In Minutes)</label>
+                  <input type="number" id="inputActualHrs" formControlName="actualHrs" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputBillableHrs">Billable Hrs (In Minutes)</label>
+                  <input type="number" id="inputBillableHrs" formControlName="billableHrs" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="inputCreateBy">Created By</label>
+                  <input type="text" id="inputCreateBy" formControlName="createBy" class="form-control" />
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button href="javascript:void(0);" type="reset" class="btn btn-secondary">Cancel</button>
+                    <input
+                      type="submit"
+                      [value]="btnView"
+                      [disabled]="entryForm.invalid"
+                      class="btn btn-success float-right"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
