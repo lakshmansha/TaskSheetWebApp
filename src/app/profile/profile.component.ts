@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CredentialsService } from '@app/auth';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() {}
+  userName: string;
 
-  ngOnInit(): void {}
+  constructor(private credentialsService: CredentialsService) {}
+
+  ngOnInit(): void {
+    this.userName = this.credentialsService.credentials.username;
+  }
 }

@@ -15,7 +15,7 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '/api',
-  apiUrl: 'https://tasksheetapi.azurewebsites.net/api',
+  apiUrl: 'http://localhost:5001/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   credentialsKey: 'credentials',
