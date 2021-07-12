@@ -1,5 +1,9 @@
 # Release History
 
+## Version 1.1.0 - Date 12-07-2021
+
+- Feature: Completed Profile Page with Change Email, Password & Update Personal Info.
+
 ## Version 1.0.2 - Date 26-June-2021
 
 - Bug Fixes on Tracker Page.
