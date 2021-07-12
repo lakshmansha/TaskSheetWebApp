@@ -58,6 +58,7 @@ export class AuthenticationService {
         };
 
         this.credentialsService.setCredentials(data, context.remember);
+        this.credentialsService.setProfile(res.body.data, context.remember);
         return res.body;
       })
     );
@@ -76,6 +77,7 @@ export class AuthenticationService {
     return this.http.post<IReturn>(url, {}).pipe(
       map((res) => {
         this.credentialsService.setCredentials();
+        this.credentialsService.setProfile();
         return true;
       })
     );

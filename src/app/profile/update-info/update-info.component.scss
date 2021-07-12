@@ -3,3 +3,7 @@
 .ng-invalid.ng-touched:not(form) {
   border-left: 4px solid theme-color("danger");
 }
+
+.mandatory {
+  color: theme-color("danger");
+}

@@ -15,6 +15,7 @@ export const environment = {
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   credentialsKey: 'jnwoi3u4542q6462',
+  profileKey: 'hF10K8H087Mi',
 };
 
 export const Feature = {

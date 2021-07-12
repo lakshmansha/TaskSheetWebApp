@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ModelMapper, propertyMap } from '@app/@core/mapper';
-import { environment } from '@env/environment';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
+
+import { environment } from '@env/environment';
+
+import { IUser, User } from '@app/@core/interface';
+import { ModelMapper, propertyMap } from '@app/@core/mapper';
 
 export interface Credentials {
   // Customize received credentials here
@@ -22,6 +25,7 @@ export class TokenData {
 }
 
 const credentialsKey = environment.credentialsKey;
+const profileKey = environment.profileKey;
 
 /**
  * Provides storage for authentication credentials.
@@ -33,12 +37,19 @@ const credentialsKey = environment.credentialsKey;
 export class CredentialsService {
   private _credentials: Credentials | null = null;
   private _tokenData: TokenData | null = null;
+  private _profile: IUser | null = null;
 
   constructor() {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
       this._tokenData = this.setTokenData(this._credentials.token);
+    }
+
+    const savedProfile = sessionStorage.getItem(profileKey) || localStorage.getItem(profileKey);
+    if (savedProfile) {
+      const _profile = JSON.parse(savedProfile);
+      this._profile = new ModelMapper(User).map(_profile);
     }
   }
 
@@ -109,6 +120,10 @@ export class CredentialsService {
     return this._tokenData;
   }
 
+  get profile(): IUser | null {
+    return this._profile;
+  }
+
   setTokenData(token: string) {
     if (!token) return {} as TokenData;
     let tokenData: TokenData = {} as any;
@@ -142,6 +157,26 @@ export class CredentialsService {
     } else {
       sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);
+    }
+  }
+
+  /**
+   * Sets the user profile.
+   * The profile may be persisted across sessions by setting the `remember` parameter to true.
+   * Otherwise, the credentials are only persisted for the current session.
+   * @param credentials The user credentials.
+   * @param remember True to remember credentials across sessions.
+   */
+  setProfile(profile?: IUser, remember?: boolean) {
+    this._profile = profile || null;
+
+    if (profile) {
+      this._profile = new ModelMapper(User).map(profile);
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem(profileKey, JSON.stringify(profile));
+    } else {
+      sessionStorage.removeItem(profileKey);
+      localStorage.removeItem(profileKey);
     }
   }
 }

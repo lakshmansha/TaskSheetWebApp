@@ -1,0 +1,42 @@
+<div class="card collapsed-card">
+  <div class="card-header">
+    <h3 class="card-title">
+      <i class="fas fa-at"></i>
+      Change Email ID
+    </h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form class="form-horizontal" (ngSubmit)="changeEmail()" [formGroup]="changeEmailForm" novalidate>
+      <div class="form-group row">
+        <label for="inputNewEmailID" class="col-sm-3 col-form-label">Enter New Email Id</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            id="inputNewEmailID"
+            placeholder="New Email ID"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-9" *ngIf="(frmEmail.invalid && frmEmail.touched) || frmEmail.dirty">
+          <small *ngIf="frmEmail.errors?.required" class="text-danger">Email is required</small>
+          <!--question mark(?) is a safe navigation operator-->
+          <small *ngIf="frmEmail.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+        </div>
+        <label>
+          <span class="text-danger" *ngIf="changeEmailForm.errors?.email">Password do not match.</span>
+        </label>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-9">
+          <button type="submit" [disabled]="changeEmailForm.invalid || isLoading" class="btn btn-danger">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

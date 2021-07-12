@@ -53,7 +53,7 @@ export class ChangePasswordComponent implements OnInit {
           this.changePasswordForm.reset();
         },
         (error) => {
-          log.debug(`Register error: ${error}`);
+          log.debug(`User Password error: ${error}`);
           this.error = error;
         }
       );

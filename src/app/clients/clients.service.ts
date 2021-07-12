@@ -13,7 +13,7 @@ import { ModelMapper } from '@app/@core/mapper';
 export class ClientsService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<IReturn> {
+  getAll(): Observable<Client[]> {
     const Url = environment.apiUrl + '/clients';
 
     return this.http.get<IReturn>(Url).pipe(
