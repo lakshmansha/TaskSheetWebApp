@@ -32,14 +32,17 @@
 
 .fap-clients {
   mask: url(assets/svg/clients.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-projects {
   mask: url(assets/svg/projects.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-tasks {
   mask: url(assets/svg/tasks.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-entry {
@@ -48,14 +51,17 @@
 
 .fap-client-entry {
   mask: url(assets/svg/client-entry.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-project-entry {
   mask: url(assets/svg/project-entry.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-task-entry {
   mask: url(assets/svg/task-entry.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-transaction {
@@ -64,8 +70,10 @@
 
 .fap-trackers {
   mask: url(assets/svg/trackers.svg);
+  mask-repeat: no-repeat;
 }
 
 .fap-tracker-entry {
   mask: url(assets/svg/tracker-entry.svg);
+  mask-repeat: no-repeat;
 }

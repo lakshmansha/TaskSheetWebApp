@@ -18,18 +18,19 @@ $fap-iconactive: #343a40;
     display: flex;
 
     p {
-      margin-left: 5px;
+      margin-left: 10px;
     }
   }
 
   .nav-treeview {
     .nav-icon {
       width: 1.3rem;
+      font-size: 45px;
     }
 
     .nav-link {
       p {
-        margin-left: 8px;
+        margin-left: 12px;
       }
 
       .far {
