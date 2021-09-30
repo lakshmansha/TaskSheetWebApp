@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
-import { Logger, UntilDestroy, untilDestroyed } from '@app/@core';
+import { Common, Logger, UntilDestroy, untilDestroyed } from '@app/@core';
 import { IClient, IProject, ITask, ITracker } from '@app/@core/interface';
 import { TrackerEntryService } from './tracker-entry.service';
 import { CredentialsService } from '@app/auth';
 
-const log = new Logger('Task Entry');
+const log = new Logger('Tracker Entry');
+const com = new Common('Tracker Entry')
 
 declare global {
   interface Window {
@@ -91,7 +92,7 @@ export class TrackerEntryComponent implements OnInit {
       this.entryForm.patchValue({
         checkIn: formatedValue,
       });
-      console.log(formatedValue);
+      this.LoadActualsHrs();
     });
   }
 
@@ -107,8 +108,23 @@ export class TrackerEntryComponent implements OnInit {
       this.entryForm.patchValue({
         checkOut: formatedValue,
       });
-      console.log(formatedValue);
+      this.LoadActualsHrs();
     });
+  }
+
+  LoadActualsHrs() {
+    const checkIn = this.entryForm.get('checkIn').value;
+    const checkOut = this.entryForm.get('checkOut').value;
+
+    if (com.IsDate(checkIn) && com.IsDate(checkOut)) {
+      let diff = (checkIn.getTime() - checkOut.getTime()) / 1000;
+      diff /= 60;
+      const minutes = Math.abs(Math.round(diff));
+
+      this.entryForm.patchValue({
+        actualHrs: minutes,
+      });
+    }
   }
 
   assignCopy() {
