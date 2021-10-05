@@ -35,6 +35,10 @@ $fap-iconactive: #343a40;
 
       .far {
         background-color: $fap-iconcolor;
+
+        .fa-file-alt {
+          font-size: 1.5em;
+        }
       }
     }
 
