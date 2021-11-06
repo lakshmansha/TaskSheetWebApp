@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Common, Logger } from '@app/@core';
+import { Common, ExcelService, Logger } from '@app/@core';
 
-import { IClient, IReport } from '@app/@core/interface';
+import { ExcelTemplate, IClient, IReport } from '@app/@core/interface';
 import { ReportsService } from './reports.service';
 
 const log = new Logger('Report Component');
@@ -26,10 +26,17 @@ export class ReportsComponent implements OnInit {
 
   //#endregion
 
+  //#region Pagination
+
+  page: number = 1;
+  pageSize: number = 7;
+
+  //#endregion
+
   ClientList: IClient[] = [];
   ReportData: IReport[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ReportsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ReportsService, private excelService: ExcelService) {
     this.createForm();
   }
 
@@ -69,7 +76,7 @@ export class ReportsComponent implements OnInit {
         fromDate: start.format('YYYY-MM-DD'),
         toDate: end.format('YYYY-MM-DD')
       });
-    });  
+    });
   }
 
   displayDate(date: Date) {
@@ -95,5 +102,21 @@ export class ReportsComponent implements OnInit {
       fromDate: [null],
       toDate: [null]
     });
+  }
+
+  exportAsXLSX():void {
+    const exportData = this.RefactorData();
+    this.excelService.exportAsExcelFile(exportData, 'TimeSheet');
+  }
+
+  RefactorData() {
+    const exportData: ExcelTemplate[] = [];
+
+    this.ReportData.forEach(element => {
+      const info = new ExcelTemplate(element);
+      exportData.push(info);
+    });
+
+    return exportData;
   }
 }

@@ -8,6 +8,7 @@ import { RouteReusableStrategy } from './route-reusable-strategy';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { LookupService } from './lookup.service';
+import { ExcelService } from './excel.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
@@ -27,6 +28,7 @@ import { LookupService } from './lookup.service';
       useClass: RouteReusableStrategy,
     },
     LookupService,
+    ExcelService
   ],
 })
 export class CoreModule {

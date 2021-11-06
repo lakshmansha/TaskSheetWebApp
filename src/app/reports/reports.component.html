@@ -39,8 +39,11 @@
                     <div class="col-4">
                         <div class="form-group d-flex align-items-center">
                             <label class="control-label mb-0">Select Dates:</label>
-                            <label class="control-label ml-3 mb-0" *ngIf="!filterForm.get('fromDate').value">Pick Dates</label>
-                            <label class="control-label ml-3 mb-0" *ngIf="filterForm.get('fromDate').value">{{filterForm.get('fromDate').value}} To {{filterForm.get('toDate').value}}</label>
+                            <label class="control-label ml-3 mb-0" *ngIf="!filterForm.get('fromDate').value">Pick
+                                Dates</label>
+                            <label class="control-label ml-3 mb-0"
+                                *ngIf="filterForm.get('fromDate').value">{{filterForm.get('fromDate').value}} To
+                                {{filterForm.get('toDate').value}}</label>
                             <button type="button" class="ml-1 btn btn-primary btn-sm daterange" title="Date range">
                                 <i class="far fa-calendar-alt"></i>
                             </button>
@@ -57,9 +60,9 @@
             <div class="card-header">
                 <h3 class="card-title">Report Data</h3>
                 <div class="card-tools">
-                    <!-- <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                        <i class="far fa-calendar-alt"></i>
-                    </button> -->
+                    <button type="button" class="btn btn-primary btn-sm" title="Export Excel" (click)="exportAsXLSX()">
+                        <i class="far fa-file-excel"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -74,18 +77,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of ReportData">
+                        <tr *ngFor="let item of ReportData | slice: (page - 1) * pageSize:page * pageSize">
                             <td>{{ displayDate(item.createdAt) }}</td>
                             <td>{{item.projectName}}</td>
                             <td>{{item.taskName}}</td>
                             <td>{{item.actualHrs}}</td>
-                            <td>{{item.billableHrs}}</td>                            
+                            <td>{{item.billableHrs}}</td>
                         </tr>
                         <tr *ngIf="ReportData.length === 0">
                             <td colspan="8">No Data Available</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="ReportData.length">
+                    </ngb-pagination>
+                </ul>
             </div>
         </div>
     </div>
