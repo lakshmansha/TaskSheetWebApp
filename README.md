@@ -8,11 +8,11 @@ The Modules are
 - Projects
 - Tasks
 - Tracker
+- Profile
 
 The Modules under Development,
 
 - Dashboard
-- Profile
 - Notifications
 
 Application Yet To Come,
