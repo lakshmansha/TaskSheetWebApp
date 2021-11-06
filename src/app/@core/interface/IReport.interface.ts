@@ -38,8 +38,8 @@ export interface IReport {
       this.Date = data.createdAt;
       this.Project = data.projectName;
       this.Task = data.taskName;
+      this.Notes = data.workNotes; 
       this.ActualHrs = (data.actualHrs / 60).toFixed(2);
-      this.BillableHrs = (data.billableHrs / 60).toFixed(2);
-      this.Notes = data.workNotes;   
+      this.BillableHrs = (data.billableHrs / 60).toFixed(2);        
     }
   }

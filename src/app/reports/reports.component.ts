@@ -106,7 +106,10 @@ export class ReportsComponent implements OnInit {
 
   exportAsXLSX():void {
     const exportData = this.RefactorData();
-    this.excelService.exportAsExcelFile(exportData, 'TimeSheet');
+    const formData = this.filterForm.value;
+    const ClientCode = this.ClientList.find((obj) => obj._id === formData.clientId).clientCode;
+    const fileName = `TaskSheet_${ClientCode} (${formData.fromDate} To ${formData.toDate})`;
+    this.excelService.exportAsExcelFile(exportData, fileName);
   }
 
   RefactorData() {
