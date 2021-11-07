@@ -1,6 +1,10 @@
 # Release History
 
-## Version 1.1.0 - Date 12-07-2021
+## Version 1.2.0 - Date 07-November-2021
+
+- Feature: Added Reports Page.
+
+## Version 1.1.0 - Date 12-July-2021
 
 - Feature: Completed Profile Page with Change Email, Password & Update Personal Info.
 
