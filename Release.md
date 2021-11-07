@@ -2,7 +2,7 @@
 
 ## Version 1.2.0 - Date 07-November-2021
 
-- Feature: Added Reports Page.
+- Feature: Added Reports Page. Auto Time Calculation on Trackers
 
 ## Version 1.1.0 - Date 12-July-2021
 
