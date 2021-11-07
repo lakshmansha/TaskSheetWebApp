@@ -6,3 +6,4 @@ export * from './logger.service';
 export * from '@ngneat/until-destroy';
 export * from './common.service';
 export * from './lookup.service';
+export * from './excel.service';
