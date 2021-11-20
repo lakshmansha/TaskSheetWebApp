@@ -20,6 +20,10 @@ export const environment = {
   supportedLanguages: ['en-US'],
   credentialsKey: 'credentials',
   profileKey: 'userprofile',
+  appInsights: {
+    instrumentationKey: '424c81f6-304b-4fae-9cd9-526a46945461',
+    appName: 'TaskSheet Web App',
+  },
 };
 
 export const Feature = {

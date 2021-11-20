@@ -7,7 +7,7 @@ import { merge } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { Logger, UntilDestroy, untilDestroyed } from '@core';
+import { Logger, MyMonitoringService, UntilDestroy, untilDestroyed } from '@core';
 import { I18nService } from '@app/i18n';
 
 const log = new Logger('App');
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private translateService: TranslateService,
     private i18nService: I18nService,
+    private myMonitoringService: MyMonitoringService,
     private ngswUpdate: SwUpdate
   ) {}
 
@@ -57,8 +58,13 @@ export class AppComponent implements OnInit, OnDestroy {
         untilDestroyed(this)
       )
       .subscribe((event) => {
-        const title = event.title;
+        const title = `${environment.App_Name} - ${event.title}`;
         if (title) {
+          this.myMonitoringService.logPageView(title);
+          this.myMonitoringService.appInsights.addTelemetryInitializer((envelope) => {
+            envelope.tags['ai.cloud.role'] = environment.appInsights.appName;
+            envelope.tags['ai.cloud.roleInstance'] = environment.appInsights.appName;
+          });
           this.titleService.setTitle(this.translateService.instant(title));
         }
       });

@@ -16,6 +16,10 @@ export const environment = {
   supportedLanguages: ['en-US'],
   credentialsKey: 'jnwoi3u4542q6462',
   profileKey: 'hF10K8H087Mi',
+  appInsights: {
+    instrumentationKey: 'ac32bab6-2161-4100-a73f-d5b5520fb4f3',
+    appName: 'TaskSheet Web App',
+  },
 };
 
 export const Feature = {

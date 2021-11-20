@@ -1,3 +1,8 @@
+import { ErrorHandler, Injectable } from '@angular/core';
+import { environment } from '@env/environment';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+
+
 /**
  * Simple logger system with the possibility of registering custom outputs.
  *
@@ -107,5 +112,55 @@ export class Logger {
       func.apply(console, log);
       Logger.outputs.forEach((output) => output.apply(output, [this.source, level, ...objects]));
     }
+  }
+}
+
+@Injectable()
+export class MyMonitoringService {
+  appInsights: ApplicationInsights;
+  constructor() {
+    this.appInsights = new ApplicationInsights({
+      config: {
+        instrumentationKey: environment.appInsights.instrumentationKey,
+        enableAutoRouteTracking: true, // option to log all route changes
+        appId: environment.appInsights.appName,
+      },
+    });
+    this.appInsights.loadAppInsights();
+  }
+
+  logPageView(name?: string, url?: string) {
+    // option to call manually
+    this.appInsights.trackPageView({
+      name: name,
+      uri: url,
+    });
+  }
+
+  logEvent(name: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackEvent({ name: name }, properties);
+  }
+
+  logMetric(name: string, average: number, properties?: { [key: string]: any }) {
+    this.appInsights.trackMetric({ name: name, average: average }, properties);
+  }
+
+  logException(exception: Error, severityLevel?: number) {
+    this.appInsights.trackException({ exception: exception, severityLevel: severityLevel });
+  }
+
+  logTrace(message: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackTrace({ message: message }, properties);
+  }
+}
+
+@Injectable()
+export class ErrorHandlerService extends ErrorHandler {
+  constructor(private myMonitoringService: MyMonitoringService) {
+    super();
+  }
+
+  handleError(error: Error) {
+    this.myMonitoringService.logException(error); // Manually log exception
   }
 }

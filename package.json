@@ -36,6 +36,7 @@
     "@angular/router": "^11.0.8",
     "@angular/service-worker": "^11.0.8",
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@microsoft/applicationinsights-web": "^2.7.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@ngx-translate/core": "^13.0.0",
     "admin-lte": "^3.1.0",
