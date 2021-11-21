@@ -1,5 +1,11 @@
 # Release History
 
+## Version 1.3.0 - Date 21-11-2021
+
+- Feature: Added Application Insights For Monitoring.
+- Bug: Tracker Page Pagination Isssue Fixed.
+- Bug: Report Filter Reset Issue Fixed. 
+
 ## Version 1.2.0 - Date 07-November-2021
 
 - Feature: Added Reports Page. Auto Time Calculation on Trackers
