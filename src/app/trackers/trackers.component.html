@@ -102,7 +102,7 @@
                 </a>
               </td>
             </tr>
-            <tr *ngIf="TrackerList.length === 0">
+            <tr *ngIf="currentListLength() === 0">
               <td colspan="8">No Data Available</td>
             </tr>
           </tbody>
@@ -110,7 +110,7 @@
       </div>
       <div class="card-footer clearfix">
         <ul class="pagination pagination-sm m-0 float-right">
-          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="TrackerList.length"></ngb-pagination>
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="currentListLength()"></ngb-pagination>
         </ul>
       </div>
     </div>

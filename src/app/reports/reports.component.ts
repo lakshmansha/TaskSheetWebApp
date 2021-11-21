@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Common, ExcelService, Logger } from '@app/@core';
 
@@ -70,7 +70,7 @@ export class ReportsComponent implements OnInit {
       endDate: moment()
     }, (start: any, end: any) => {
       // eslint-disable-next-line no-alert
-      log.info('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      log.info('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 
       this.filterForm.patchValue({
         fromDate: start.format('YYYY-MM-DD'),
@@ -88,19 +88,33 @@ export class ReportsComponent implements OnInit {
   }
 
   search() {
-    const search$ = this.service.search(this.filterForm.value);
-    search$.subscribe(
-      (data) => {
-        this.ReportData = data;
-      }
-    )
+    if(this.filterForm.valid) {
+      const search$ = this.service.search(this.filterForm.value);
+      search$.subscribe(
+        (data) => {
+          this.ReportData = data;
+        }
+      )
+    }    
+  }
+
+  reset() {
+    this.filterForm.reset();
+
+    this.ReportData = [];
+    const start = moment().subtract(29, 'days');
+
+    this.filterForm.patchValue({
+      fromDate: start.format('YYYY-MM-DD'),
+      toDate: moment().format('YYYY-MM-DD')
+    });
   }
 
   private createForm() {
     this.filterForm = this.formBuilder.group({
-      clientId: [null],
-      fromDate: [null],
-      toDate: [null]
+      clientId: [null, Validators.required],
+      fromDate: [null, Validators.required],
+      toDate: [null, Validators.required]
     });
   }
 

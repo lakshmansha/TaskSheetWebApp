@@ -13,11 +13,9 @@ The Modules are
 The Modules under Development,
 
 - Dashboard
+- Forgot Password
 - Notifications
 
-Application Yet To Come,
-
-- Tracker (PWA App)
 
 ## Get Start
 

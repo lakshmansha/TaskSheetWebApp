@@ -9,6 +9,7 @@ import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { LookupService } from './lookup.service';
 import { ExcelService } from './excel.service';
+import { MyMonitoringService } from './logger.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
@@ -28,7 +29,8 @@ import { ExcelService } from './excel.service';
       useClass: RouteReusableStrategy,
     },
     LookupService,
-    ExcelService
+    ExcelService,
+    MyMonitoringService
   ],
 })
 export class CoreModule {

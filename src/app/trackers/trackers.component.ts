@@ -69,4 +69,8 @@ export class TrackersComponent implements OnInit {
       taskId: [''],
     });
   }
+
+  currentListLength() {
+    return com.IsValid(this.filterForm.get('taskId').value) ? this.TrackerList.filter((obj) => obj.taskId === this.filterForm.get('taskId').value).length : this.TrackerList.length;
+  }
 }
