@@ -27,5 +27,5 @@ export class Task implements ITask {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor() {}
+  constructor() { }
 }
