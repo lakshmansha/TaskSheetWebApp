@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private i18nService: I18nService,
     private myMonitoringService: MyMonitoringService,
     private ngswUpdate: SwUpdate
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Setup logger
@@ -37,6 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     log.debug('init');
+
+    this.AddUmamiAnalysis();
 
     // Setup translations
     this.i18nService.init(environment.defaultLanguage, environment.supportedLanguages);
@@ -120,6 +122,20 @@ export class AppComponent implements OnInit, OnDestroy {
         });
       }
     }
+  }
+
+  //#endregion
+
+  //#region Umami
+
+  AddUmamiAnalysis() {
+    let nodeUmami = document.createElement('script'); // creates the script tag
+    nodeUmami.src = environment.umamiInsights.srcUrl; // sets the source (insert url in between quotes)
+    nodeUmami.async = true; // makes script run asynchronously
+    nodeUmami.defer = true;
+    nodeUmami.setAttribute('data-website-id', environment.umamiInsights.appCode);
+    // append to head of document
+    document.getElementsByTagName('head')[0].append(nodeUmami);
   }
 
   //#endregion
