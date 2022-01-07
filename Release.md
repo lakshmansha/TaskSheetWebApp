@@ -1,5 +1,10 @@
 # Release History
 
+## Version 1.4.0 - Date 07-January-2022
+
+- Feature: Added Dashboard Page.
+- Feature: Added Umami Analytics for Statistics.
+
 ## Version 1.3.0 - Date 21-11-2021
 
 - Feature: Added Application Insights For Monitoring.
