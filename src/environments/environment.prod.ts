@@ -20,6 +20,10 @@ export const environment = {
     instrumentationKey: 'ac32bab6-2161-4100-a73f-d5b5520fb4f3',
     appName: 'TaskSheet Web App',
   },
+  umamiInsights: {
+    srcUrl: 'https://umami-analytics-webapp.azurewebsites.net/umami.js',
+    appCode: '0cc8e164-979b-461d-8d7a-334e2315914c',
+  },
 };
 
 export const Feature = {
