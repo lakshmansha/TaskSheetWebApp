@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard <small>(In Development)</small></h1>
+          <h1 class="m-0">Dashboard</h1>
         </div>
         <!-- /.col -->
         <div class="col-sm-6">
@@ -19,64 +19,70 @@
       <!-- Info boxes -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">
-                10
-                <small>%</small>
-              </span>
+          <div class="small-box bg-default">
+            <!-- Loading (remove the following to stop the loading)-->
+            <div class="overlay dark" *ngIf="IsBackLogLoading">
+              <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </div>
-            <!-- /.info-box-content -->
+            <!-- end loading -->
+            <div class="inner">
+              <h3>{{ backlogTasks?.length }}</h3>
+
+              <p>BackLog Tasks</p>
+            </div>
+            <div class="icon">
+              <!-- <i class="far fap-tasks nav-icon"></i> -->              
+              <i class="fas fa-hourglass-start"></i>
+            </div>
+            <a href="javascript:void(0);" (click)="ShowBackLogTask = !ShowBackLogTask" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
           </div>
           <!-- /.info-box -->
         </div>
-        <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
+          <div class="small-box bg-info">
+            <!-- Loading (remove the following to stop the loading)-->
+            <div class="overlay dark" *ngIf="IsOnGoingLoading">
+              <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </div>
-            <!-- /.info-box-content -->
+            <!-- end loading -->
+            <div class="inner">
+              <h3>{{ onGoingTasks.length }}</h3>
+
+              <p>On Going Tasks</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+            <a href="javascript:void(0);" (click)="ShowOnGoingTask = !ShowOnGoingTask" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
           </div>
           <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
+        </div>    
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Sales</span>
-              <span class="info-box-number">760</span>
+          <div class="small-box bg-success">
+            <!-- Loading (remove the following to stop the loading)-->
+            <div class="overlay dark" *ngIf="IsCompleteLoading">
+              <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </div>
-            <!-- /.info-box-content -->
+            <!-- end loading -->
+            <div class="inner">
+              <h3>{{ completedTasks.length }}</h3>
+
+              <p>Completed Tasks</p>
+            </div>
+            <div class="icon">
+              <!-- <i class="far fa-check-circle"></i> -->
+              <i class="fas fa-hourglass-end"></i>
+            </div>
+            <a href="javascript:void(0);" (click)="ShowCompleteTask = !ShowCompleteTask" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
           </div>
           <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
+        </div>        
       </div>
       <!-- /.row -->
     </div>
@@ -85,71 +91,152 @@
   <!-- /.content-header -->
 
   <div class="content">
-    <div class="container-fluid">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+    <div class="container-fluid"> 
+      <div class="row" *ngIf="ShowBackLogTask">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">BackLog Tasks</h3>
+  
+              <div class="card-tools">               
+                <button type="button" class="btn btn-tool" (click)="ShowBackLogTask = !ShowBackLogTask" title="Remove">
+                  <i class="fas fa-times"></i>
+                </button>           
+              </div>
             </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Task</th>
+                    <th>Estimated Hrs</th>
+                    <th>Actual Hrs</th>
+                    <th>Billable Hrs</th>
+                    <!-- <th>Progress</th>
+                    <th style="width: 40px">Label</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of backlogTasks | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
+                    <td>{{item._id}}</td>
+                    <td>{{item.taskName}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>                    
+                  </tr>                  
+                </tbody>
+              </table>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="backlogTasks.length"></ngb-pagination>
+              </ul>
+            </div>
           </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
       </div>
-      <!-- /.row -->
+      <div class="row" *ngIf="ShowOnGoingTask">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">On-Going Tasks</h3>
+  
+              <div class="card-tools">               
+                <button type="button" class="btn btn-tool" (click)="ShowOnGoingTask = !ShowOnGoingTask" title="Remove">
+                  <i class="fas fa-times"></i>
+                </button>           
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Task</th>
+                    <th>Estimated Hrs</th>
+                    <th>Actual Hrs</th>
+                    <th>Billable Hrs</th>
+                    <th style="width: 10%"></th>
+                    <!-- <th>Progress</th>
+                    <th style="width: 40px">Label</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of onGoingTasks | orderBy: 'desc':'_id' | slice: (OnPage - 1) * OnPageSize:OnPage * OnPageSize">
+                    <td>{{item._id}}</td>
+                    <td>{{item.taskName}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td class="project-actions text-right p-2">
+                      <a class="btn btn-info btn-sm" href="javascript:void(0);" (click)="toTracker(item._id)">
+                        <i class="fas fa-plus"> </i>
+                        Add Tracker
+                      </a>
+                    </td>
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <ngb-pagination [(page)]="OnPage" [pageSize]="OnPageSize" [collectionSize]="onGoingTasks.length"></ngb-pagination>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>      
+      <div class="row" *ngIf="ShowCompleteTask">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Completed Tasks</h3>
+  
+              <div class="card-tools">               
+                <button type="button" class="btn btn-tool" (click)="ShowCompleteTask = !ShowCompleteTask" title="Remove">
+                  <i class="fas fa-times"></i>
+                </button>           
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Task</th>
+                    <th>Estimated Hrs</th>
+                    <th>Actual Hrs</th>
+                    <th>Billable Hrs</th>
+                    <!-- <th>Progress</th>
+                    <th style="width: 40px">Label</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of completedTasks | orderBy: 'desc':'_id' | slice: (CompPage - 1) * CompPageSize:CompPage * CompPageSize">
+                    <td>{{item._id}}</td>
+                    <td>{{item.taskName}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>                    
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <ngb-pagination [(page)]="CompPage" [pageSize]="CompPageSize" [collectionSize]="completedTasks.length"></ngb-pagination>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>             
     </div>
   </div>
 </div>

@@ -1,0 +1,13 @@
+.small-box {
+    &.bg-default {
+        .icon {
+            color: #343a40;
+        }
+    }
+
+    &.bg-info,&.bg-success {
+        .icon {
+            color: #f4f6f9;
+        }
+    }
+}
