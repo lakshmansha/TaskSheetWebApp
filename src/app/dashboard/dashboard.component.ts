@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
   pageLoad() {
     this.IsOnGoingLoading = true;
     this.IsBackLogLoading = true;
+    this.IsCompleteLoading = true;
     this.ShowBackLogTask = false;
     this.ShowCompleteTask = false;
     this.ShowOnGoingTask = false;

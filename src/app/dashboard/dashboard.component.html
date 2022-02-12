@@ -122,7 +122,7 @@
                   <tr *ngFor="let item of backlogTasks | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
                     <td>{{item._id}}</td>
                     <td>{{item.taskName}}</td>
-                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs': true}}</td>
                     <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
                     <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>                    
                   </tr>                  
@@ -169,7 +169,7 @@
                   <tr *ngFor="let item of onGoingTasks | orderBy: 'desc':'_id' | slice: (OnPage - 1) * OnPageSize:OnPage * OnPageSize">
                     <td>{{item._id}}</td>
                     <td>{{item.taskName}}</td>
-                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs': true}}</td>
                     <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
                     <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>
                     <td class="project-actions text-right p-2">
@@ -221,7 +221,7 @@
                   <tr *ngFor="let item of completedTasks | orderBy: 'desc':'_id' | slice: (CompPage - 1) * CompPageSize:CompPage * CompPageSize">
                     <td>{{item._id}}</td>
                     <td>{{item.taskName}}</td>
-                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs'}}</td>
+                    <td>{{item.estimatedHrs | toHours : 'HH:mm Hrs': true}}</td>
                     <td>{{item.actualHrs | toHours : 'HH:mm Hrs'}}</td>
                     <td>{{item.billableHrs | toHours : 'HH:mm Hrs'}}</td>                    
                   </tr>                  
