@@ -1,5 +1,9 @@
 # Release History
 
+## Version 1.4.1 - Date 12-February-2022
+
+- BugFix: Fixed Display Estimated Hours on Dashboard Page.
+
 ## Version 1.4.0 - Date 07-January-2022
 
 - Feature: Added Dashboard Page.
