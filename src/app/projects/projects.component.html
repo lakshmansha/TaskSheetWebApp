@@ -25,14 +25,25 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Projects</h3>
-        <div class="card-tools">
-          <!-- <a routerLink="/client/0" routerLinkActive="active" class="btn btn-primary">
+        <div class="card-tools w-50 d-flex">       
+          <form [formGroup]="filterForm" class="w-100">
+            <div class="input-group input-group-md">
+              <input type="text" formControlName="search" name="table_search" class="form-control float-right" placeholder="Search By #">
+  
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>      
+          <button type="button" class="btn btn-tool w-25" routerLink="/project" routerLinkActive="active">
+            <i class="fas fa-plus mr-1"></i> Project Entry
+          </button>
+            <!-- <a routerLink="/client/0" routerLinkActive="active" class="btn btn-primary">
               <i class="far fa-plus"></i>
               <p>Client Entry</p>
             </a> -->
-          <button type="button" class="btn btn-tool" routerLink="/project" routerLinkActive="active">
-            <i class="fas fa-plus mr-1"></i> Project Entry
-          </button>
           <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
             </button> -->
@@ -53,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of ProjectList | orderBy: 'desc':'_id' | slice: (page - 1) * pageSize:page * pageSize">
+            <tr *ngFor="let item of ProjectList | orderBy: 'desc':'_id' | filter: 'projectCode': filterForm.get('search').value | slice: (page - 1) * pageSize:page * pageSize">
               <td>{{ item.projectCode }}</td>
               <td>
                 <a>

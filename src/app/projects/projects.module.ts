@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,7 +13,7 @@ import { ProjectsResolver } from './projects.resolver';
 
 @NgModule({
   declarations: [ProjectsComponent],
-  imports: [CommonModule, TranslateModule, NgbModule, SharedModule, ProjectsRoutingModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, NgbModule, SharedModule, ProjectsRoutingModule],
   providers: [ProjectsService, ProjectsResolver],
 })
 export class ProjectsModule {}

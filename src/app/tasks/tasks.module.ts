@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,7 +13,7 @@ import { TasksResolver } from './tasks.resolver';
 
 @NgModule({
   declarations: [TasksComponent],
-  imports: [CommonModule, TranslateModule, NgbModule, SharedModule, TasksRoutingModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, NgbModule, SharedModule, TasksRoutingModule],
   providers: [TasksService, TasksResolver],
 })
 export class TasksModule {}

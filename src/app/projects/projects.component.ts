@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { IProject } from '@app/@core/interface';
 import { Common } from '@app/@core';
@@ -20,6 +21,12 @@ export class ProjectsComponent implements OnInit {
 
   //#endregion
 
+  //#region Filter Variables
+
+  filterForm!: FormGroup;
+
+  //#endregion
+
   //#region Pagination
 
   page: number = 1;
@@ -29,7 +36,9 @@ export class ProjectsComponent implements OnInit {
 
   ProjectList: IProject[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit(): void {
     this.PageLoad();
@@ -47,5 +56,11 @@ export class ProjectsComponent implements OnInit {
 
   ToEdit(id: string) {
     this.router.navigateByUrl('/project/' + id);
+  }
+
+  private createForm() {
+    this.filterForm = this.formBuilder.group({
+      search: [''],
+    });
   }
 }
